@@ -37,8 +37,9 @@ def create_features(img):
 def compute_prediction(img, model):
 
     img = cv2.copyMakeBorder(img, top=10, bottom=10, \
-                                       left=10, right=10, \
-                                       borderType= cv2.BORDER_CONSTANT, value=[0, 0, 0])
+                                  left=10, right=10, \
+                                  borderType = cv2.BORDER_CONSTANT, \
+                                  value=[0, 0, 0])
 
     features = create_features(img)
     predictions = model.predict(features.reshape(-1, features.shape[1]))
