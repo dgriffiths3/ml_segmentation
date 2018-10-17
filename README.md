@@ -39,4 +39,4 @@ python train.py -i <path_to_image_folder> -l <path_to_label_folder> -c <SVM, RF,
 
 ### Example Output
 
-![Example Output](pots/image_small.png)
+![Example Output](pots/image_small.png | width=400)
