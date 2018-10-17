@@ -35,8 +35,12 @@ Haralick (Co-occurance matrix) features (Also texture):
 
 ### Example Usage
 
-python train.py -i <path_to_image_folder> -l <path_to_label_folder> -c <SVM, RF, GBC> -o <path/to/model.p>
+python train.py -i <path_to_image_folder> -l <path/to/label/folder> -c <SVM, RF, GBC> -o <path/to/model.p>
+
+python inference.py -i <path_to_image_folder> -m <path/to/model.p> -o <path/to/output/folder>
+
+python evaluation.py -i <path/to/test/images> -g <path/to/ground/truth/images> [-m]
 
 ### Example Output
 
-![Example Output](pots/image_small.png | width=400)
+![Example Output](pots/image_small.png)

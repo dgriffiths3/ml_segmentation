@@ -36,8 +36,10 @@ def create_features(img):
 
 def compute_prediction(img, model):
 
-    img = cv2.copyMakeBorder(img, top=10, bottom=10, \
-                                  left=10, right=10, \
+    border = 5 # (haralick neighbourhood - 1) / 2
+
+    img = cv2.copyMakeBorder(img, top=border, bottom=border, \
+                                  left=border, right=border, \
                                   borderType = cv2.BORDER_CONSTANT, \
                                   value=[0, 0, 0])
 
@@ -45,9 +47,8 @@ def compute_prediction(img, model):
     predictions = model.predict(features.reshape(-1, features.shape[1]))
     pred_size = int(math.sqrt(features.shape[0]))
     inference_img = predictions.reshape(pred_size, pred_size)
-    bordersize = img.shape[0] - pred_size
-    return inference_img
 
+    return inference_img
 
 def infer_images(image_dir, model_path, output_dir):
 
@@ -65,7 +66,6 @@ def infer_images(image_dir, model_path, output_dir):
 def main(image_dir, model_path, output_dir):
 
     infer_images(image_dir, model_path, output_dir)
-
 
 if __name__ == '__main__':
     args = parse_args()

@@ -117,7 +117,7 @@ def create_features(img, img_gray, label, train=True):
 
     lbp_radius = 24 # local binary pattern neighbourhood
     h_neigh = 11 # haralick neighbourhood
-    num_examples = 5000 # number of examples per image to use for training model
+    num_examples = 1000 # number of examples per image to use for training model
 
     lbp_points = lbp_radius*8
     h_ind = int((h_neigh - 1)/ 2)
