@@ -39,4 +39,8 @@ python train.py -i <path_to_image_folder> -l <path_to_label_folder> -c <SVM, RF,
 
 ### Example Output
 
-[[https://github.com/dgriffiths3/ml_segmentation/tree/master/pots/image.png|alt=Example Output]]
+[[https://github.com/dgriffiths3/ml_segmentation/tree/master/pots/image.png|alt=example]]
+
+![alt text][image]
+
+[image]: https://github.com/dgriffiths3/ml_segmentation/tree/master/pots/image.png "Example Output"
