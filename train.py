@@ -42,14 +42,14 @@ def read_data(image_dir, label_dir):
 
     print ('[INFO] Reading image data.')
 
-    filelist = glob(image_dir+'/*.jpg')
+    filelist = glob(os.path.join(image_dir, '*.jpg'))
     image_list = []
     label_list = []
 
     for file in filelist:
 
         image_list.append(cv2.imread(file, 1))
-        label_list.append(cv2.imread(label_dir+"/"+file.split("/")[-1].split('.')[0]+'.png', 0))
+        label_list.append(cv2.imread(os.path.join(label_dir, os.path.basename(file).split('.')[0]+'.png'), 0))
 
     return image_list, label_list
 

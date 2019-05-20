@@ -52,16 +52,16 @@ def compute_prediction(img, model):
 
 def infer_images(image_dir, model_path, output_dir):
 
-    filelist = glob(image_dir+'/*.jpg')
+    filelist = glob(os.path.join(image_dir,'*.jpg'))
 
     print ('[INFO] Running inference on %s test images' %len(filelist))
 
     model = pkl.load(open( model_path, "rb" ) )
 
     for file in filelist:
-        print ('[INFO] Processing images:', file.split('/')[-1])
+        print ('[INFO] Processing images:', os.path.basename(file))
         inference_img = compute_prediction(cv2.imread(file, 1), model)
-        cv2.imwrite(output_dir+'/'+file.split('/')[-1], inference_img)
+        cv2.imwrite(os.path.join(output_dir, os.path.basename(file)), inference_img)
 
 def main(image_dir, model_path, output_dir):
 

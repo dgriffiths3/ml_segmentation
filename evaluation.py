@@ -11,10 +11,10 @@ from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_sc
 
 def seg_multi_class(test_mask_dir, truth_mask_dir, weighting):
 
-    test_masks = glob(test_mask_dir+'/*.png')
-    test_masks.extend(glob(test_mask_dir+'/*.jpg'))
-    truth_masks = glob(truth_mask_dir+'/*.png')
-    truth_masks.extend(glob(truth_mask_dir+'/*.jpg'))
+    test_masks = glob(os.path.join(test_mask_dir, '*.png'))
+    test_masks.extend(glob(os.path.join(test_mask_dir, '*.jpg')))
+    truth_masks = glob(os.path.join(truth_mask_dir, '*.png'))
+    truth_masks.extend(glob(os.path.join(truth_mask_dir, '*.jpg')))
 
     print ('[INFO] Performing segmentation evaluation...')
     print ('[INFO] %.0f images to process' %len(test_masks))
@@ -37,7 +37,7 @@ def seg_multi_class(test_mask_dir, truth_mask_dir, weighting):
         pred_im = cv2.imread(test_img, 0)
 
         for truth_img in truth_masks:
-                if truth_img.split('/')[-1].split('.')[0] == test_img.split('/')[-1].split('.')[0]:
+                if os.path.splitext(os.path.basename(truth_img))[0] == os.path.splitext(os.path.basename(test_img))[0]:
                         gt_im = cv2.imread(truth_img, 0)
                         if pred_im.size != gt_im.size:
                             raise TypeError("Images must be matching sizes")
@@ -59,10 +59,10 @@ def seg_multi_class(test_mask_dir, truth_mask_dir, weighting):
 
 def seg_binary(test_mask_dir, truth_mask_dir):
 
-    test_masks = glob(test_mask_dir+'/*.png')
-    test_masks.extend(glob(test_mask_dir+'/*.jpg'))
-    truth_masks = glob(truth_mask_dir+'/*.png')
-    truth_masks.extend(glob(truth_mask_dir+'/*.jpg'))
+    test_masks = glob(os.path.join(test_mask_dir, '*.png'))
+    test_masks.extend(glob(os.path.join(test_mask_dir, '*.jpg')))
+    truth_masks = glob(os.path.join(truth_mask_dir, '*.png'))
+    truth_masks.extend(glob(os.path.join(truth_mask_dir, '*.jpg')))
 
     print ('[INFO] Performing segmentation evaluation...')
     print ('[INFO] %.0f images to process' %len(test_masks))
@@ -89,7 +89,7 @@ def seg_binary(test_mask_dir, truth_mask_dir):
         pred_im[pred_im>0] = 255
 
         for truth_img in truth_masks:
-            if truth_img.split('/')[-1].split('.')[0] == test_img.split('/')[-1].split('.')[0]:
+            if os.path.splitext(os.path.basename(truth_img))[0] == os.path.splitext(os.path.basename(test_img))[0]:
                 gt_im = cv2.imread(truth_img, 0)
                 gt_im[gt_im>0] = 255
                 if pred_im.size != gt_im.size:
